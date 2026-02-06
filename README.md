@@ -1,118 +1,188 @@
-Flask RealWorld Example App - Software Re-Engineering Assignment 1
+Got it 👍 I’ll turn that into a clean, professional **README.md** with proper Markdown formatting, headings, and code blocks—ready to drop straight into your repo.
 
-Assignment: No. 1 - Containerization & Static Code Analysis
+---
 
-Group Members
+# Flask RealWorld Example App
 
-Name
+**Software Re-Engineering – Assignment 1**
+**Containerization & Static Code Analysis**
 
-Roll Number
+---
 
-M. Hashim Ali
+## 📌 Assignment Details
 
-22F3635
+**Assignment No:** 1
+**Topic:** Containerization & Static Code Analysis
 
-Sarmad Mehmood
+### 👥 Group Members
 
-22F3695
+| Name           | Roll Number |
+| -------------- | ----------- |
+| M. Hashim Ali  | 22F3635     |
+| Sarmad Mehmood | 22F3695     |
 
-Project Overview
+---
 
-This repository contains a containerized version of the Flask RealWorld Example App. The project has been updated with a Dockerfile for containerization and analyzed using SonarQube for static code analysis.
+## 📖 Project Overview
 
-Original Repository: https://github.com/gothinkster/flask-realworld-example-app
+This repository contains a **containerized version of the Flask RealWorld Example App**.
+The project has been enhanced with:
 
-Language: Python (Flask)
+* **Docker** for containerization
+* **SonarQube** for static code analysis
 
-1. Docker Execution Steps
+### 🔗 Original Repository
 
-Follow these steps to build and run the application container.
+* [https://github.com/gothinkster/flask-realworld-example-app](https://github.com/gothinkster/flask-realworld-example-app)
 
-Prerequisites
+### 🛠 Tech Stack
 
-Docker Desktop installed and running.
+* **Language:** Python
+* **Framework:** Flask
+* **Tools:** Docker, SonarQube
 
-Step 1: Clone the Repository
+---
 
+## 🐳 Docker Execution Steps
+
+Follow the steps below to build and run the application using Docker.
+
+### ✅ Prerequisites
+
+* Docker Desktop installed and running
+
+---
+
+### Step 1: Clone the Repository
+
+```bash
 git clone <YOUR_FORK_URL>
 cd flask-realworld-example-app
+```
 
+---
 
-Step 2: Build the Docker Image
+### Step 2: Build the Docker Image
 
-This command builds the image using the Dockerfile in the root directory.
+This command builds the Docker image using the `Dockerfile` in the root directory.
 
+```bash
 docker build -t flask-realworld .
+```
 
+---
 
-Step 3: Run the Container
+### Step 3: Run the Container
 
-Run the container and map port 5000.
+Run the container and expose port **5000**.
 
+```bash
 docker run -p 5000:5000 flask-realworld
+```
 
+---
 
-Verification:
-Open your browser and navigate to: http://localhost:5000/api/articles to see the API response.
+### 🔍 Verification
 
-2. SonarQube Analysis Steps
+Open your browser and navigate to:
 
-Follow these steps to deploy SonarQube and run the static analysis scanner.
+```
+http://localhost:5000/api/articles
+```
 
-Step 1: Deploy SonarQube Server
+If the API response is displayed, the container is running successfully.
+
+---
+
+## 🔎 SonarQube Analysis Steps
+
+Follow the steps below to deploy SonarQube and analyze the project.
+
+---
+
+### Step 1: Deploy SonarQube Server
 
 Pull and run the official SonarQube Community Edition image.
 
+```bash
 docker pull sonarqube:community
 docker run -d --name sonarqube -p 9000:9000 sonarqube:community
+```
 
+📊 **Access Dashboard:**
 
-Access Dashboard: Open http://localhost:9000
+```
+http://localhost:9000
+```
 
-Default Login: admin / admin (You will be prompted to change the password).
+🔐 **Default Login:**
 
-Step 2: Configure Project & Token
+* Username: `admin`
+* Password: `admin`
+  (You will be prompted to change the password)
 
-Log in to SonarQube.
+---
 
-Click "Create a local project".
+### Step 2: Configure Project & Token
 
-Project Key: flask-realworld.
+1. Log in to SonarQube
+2. Click **Create a local project**
+3. Set the following:
 
-Main Branch: master.
+   * **Project Key:** `flask-realworld`
+   * **Main Branch:** `master`
+4. Choose **Use the global setting**
+5. Select **Locally** as the analysis method
+6. Generate a token named `my-token` and copy it
 
-Select "Use the global setting" for defining the project.
+---
 
-Select "Locally" for analysis method.
+### Step 3: Run SonarScanner
 
-Generate a token named my-token and copy it.
+Run the scanner from the **root directory** of the project.
 
-Step 3: Run SonarScanner
+🔁 Replace `[YOUR_TOKEN_HERE]` with your generated token.
 
-Execute the scanner using Docker. Run this command from the root of the project folder.
+#### 🪟 Windows (PowerShell)
 
-Replace [YOUR_TOKEN_HERE] with the token generated in the previous step.
-
-Windows (PowerShell):
-
+```powershell
 docker run --rm `
-    -e SONAR_HOST_URL="[http://host.docker.internal:9000](http://host.docker.internal:9000)" `
-    -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=flask-realworld" `
-    -e SONAR_TOKEN="[YOUR_TOKEN_HERE]" `
-    -v "${PWD}:/usr/src" `
-    sonarsource/sonar-scanner-cli
+  -e SONAR_HOST_URL="http://host.docker.internal:9000" `
+  -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=flask-realworld" `
+  -e SONAR_TOKEN="[YOUR_TOKEN_HERE]" `
+  -v "${PWD}:/usr/src" `
+  sonarsource/sonar-scanner-cli
+```
 
+#### 🐧 Linux / 🍎 macOS / Git Bash
 
-Linux / Mac / Git Bash:
-
+```bash
 docker run --rm \
-    -e SONAR_HOST_URL="[http://host.docker.internal:9000](http://host.docker.internal:9000)" \
-    -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=flask-realworld" \
-    -e SONAR_TOKEN="[YOUR_TOKEN_HERE]" \
-    -v "${PWD}:/usr/src" \
-    sonarsource/sonar-scanner-cli
+  -e SONAR_HOST_URL="http://host.docker.internal:9000" \
+  -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=flask-realworld" \
+  -e SONAR_TOKEN="[YOUR_TOKEN_HERE]" \
+  -v "${PWD}:/usr/src" \
+  sonarsource/sonar-scanner-cli
+```
 
+---
 
-Step 4: View Results
+### Step 4: View Results
 
-Once the scan is complete (look for EXECUTION SUCCESS in the terminal), refresh your SonarQube dashboard at http://localhost:9000 to view the analysis report.
+After the scan completes (look for **`EXECUTION SUCCESS`** in the terminal):
+
+* Refresh the SonarQube dashboard at
+
+  ```
+  http://localhost:9000
+  ```
+* View code quality metrics, bugs, vulnerabilities, and code smells
+
+---
+
+If you want, I can also:
+
+* Add **screenshots section**
+* Write a **Conclusion / Learning Outcomes**
+* Adjust it to match your **university’s README format**
+  Just say the word 😄
