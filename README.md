@@ -55,7 +55,7 @@ Follow the steps below to build and run the application using Docker.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <YOUR_FORK_URL>
+git clone https://github.com/gothinkster/flask-realworld-example-app
 cd flask-realworld-example-app
 ```
 
@@ -178,10 +178,3 @@ After the scan completes (look for **`EXECUTION SUCCESS`** in the terminal):
 * View code quality metrics, bugs, vulnerabilities, and code smells
 
 ---
-
-If you want, I can also:
-
-* Add **screenshots section**
-* Write a **Conclusion / Learning Outcomes**
-* Adjust it to match your **university’s README format**
-  Just say the word 😄
